@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEF Appointment Checklist</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        #date-time {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+
+        button {
+            margin-right: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        #printBtn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #copyBtn {
+            background-color: #008CBA;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="date-time"></div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Item No.</th>
+                <th>Necessary Documentation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Two recent photographs</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Passport or any other valid travel document</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Valid residence visa</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Evidence of <strong><mark>sufficient</mark></strong> means of subsistence</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Proof of <strong><mark>accommodation</mark></strong></td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Permission for SEF to check Portuguese <strong><mark>criminal</mark></strong> record (except for > 16 y old)</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>A document attesting to the existence of a family relationship, where applicable</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Supporting evidence of registration within <strong><mark>Tax</mark></strong> Authority</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Document proving that the applicant is registered with the <strong><mark>Social</mark> Security</strong></td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td><strong><mark>Health insurance</mark></strong> or evidence of coverage by the National Health Service</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h4>bank-jounta-permission-NIF-social-insurance</h4>
+    <h4><mark>bjpn si</mark></h4>
+    <a href="https://www.portugalresidencyadvisors.com/sef-portugal-immigration-and-borders-service/">The Source of this information </a><br>
+    <button id="printBtn" onclick="window.print()">Print</button>
+    <button id="copyBtn">Copy Content</button>
+
+    <script>
+        // Display the current date and time
+        function updateDateTime() {
+            const now = new Date();
+            const dateTime = now.toLocaleString();
+            document.getElementById('date-time').textContent = `Current Date and Time: ${dateTime}`;
+        }
+
+        updateDateTime();
+
+        // Copy table content to clipboard
+        document.getElementById('copyBtn').addEventListener('click', function() {
+            const tableText = Array.from(document.querySelectorAll('table tr'))
+                .map(row => Array.from(row.cells).map(cell => cell.textContent).join('\t'))
+                .join('\n');
+            
+            navigator.clipboard.writeText(tableText)
+                .then(() => alert('Table content copied to clipboard!'))
+                .catch(err => alert('Failed to copy text: ', err));
+        });
+    </script>
+
+</body>
+</html>
